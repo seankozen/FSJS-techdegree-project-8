@@ -12,6 +12,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Add static middleware
+app.use('/static', express.static('public'));
+
 // view engine setup
 app.set('view engine', 'pug');
 //app.set('views', path.join(__dirname, 'views'));
