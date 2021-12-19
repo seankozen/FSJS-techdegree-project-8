@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const sequelize = require('./models').sequelize;
+const pug = require('pug');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
