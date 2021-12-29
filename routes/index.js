@@ -26,13 +26,13 @@ function asyncHandler(cb){
 
 /* Home & Books route */
 router.get("/", asyncHandler(async (req, res) => {
-	res.render("layout");
 	res.redirect("/books");
 }));
 
 /* Show full list of books */
 router.get("/books", asyncHandler(async (req, res) => {
-  res.render("layout");
+  const books = await Book.findAll();
+  res.render("all-books", {books});
 	
 }));
 
