@@ -9,6 +9,7 @@ const pug = require('pug');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var booksRouter = require('./routes/books');
 
 var app = express();
 
@@ -27,7 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
+app.use('/books', booksRouter);
 
 
 (async() => {
@@ -49,8 +51,8 @@ app.use((req, res, next) => {
 
 // error handler
 app.use(function(err, req, res, next) {
-  if(error.status === 404) {
-    res.render("page-not-found", {error});
+  if(err.status === 404) {
+    res.render("page-not-found", {err});
   } else {
     err.message = err.message || "Something is wrong with the server.";
     res.locals.error = err;

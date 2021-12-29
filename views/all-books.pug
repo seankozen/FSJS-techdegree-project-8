@@ -1,7 +1,7 @@
 extends layout
 
 block content 
-    h1 Books
+    h1= title
     p
       a(class='button' href="/books/new") Create New Book
     table
@@ -14,7 +14,7 @@ block content
         each book in books
             tr 
                 td 
-                    a(href= "/books/" + book.id) #{book.title}  
+                  a(href= "/books/" + book.id) #{book.title}  
                 td= book.author 
                 td= book.genre 
                 td= book.year 

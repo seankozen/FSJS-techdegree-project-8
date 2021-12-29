@@ -1,29 +1,6 @@
-doctype html
-html
-  head
-    title New Book
-    link(rel='stylesheet', href='static/stylesheets/normalize.css')
-    link(rel='stylesheet', href='static/stylesheets/style.css')
-  body
-    h1 New Book
-    form
-      h2(class='error') Oooops!
-      ul(class='error')
-        li Title is required
-        li Author is required
-      p
-        label(for='title') Title
-        input#title(name='title' type='text')
-      p
-        label(for='author') Author
-        input#author(name='author' type='text')
-      p
-        label(for='genre') Genre
-        input#genre(name='genre' type='text')
-      p
-        label(for='year') Year
-        input#year(name='year' type='text')
-      p
-        input(type='submit' value='Create New Book')
-      p
-        a(class='button' href='all_books.html') Cancel
+if(errors)
+    h2.error Title and Author fields are mandatory.
+    ul.error
+        each error in errors
+            li= error.message
+     
