@@ -38,21 +38,22 @@ router.get("/books", asyncHandler(async (req, res) => {
 
 
 /* Create new book form */
-router.get("/books/new", asyncHandler(async (req, res) => {
-
+router.get('/books/new', (req, res) => {
+  res.render("newbook", { book: {}, title: "New Book" });
 	
-}));
+});
 
 
 /* Post new book to database */
-router.post("/books/new", asyncHandler(async (req, res) => {
+router.post('/', asyncHandler(async (req, res) => {
 
 	
 }));
 
 /* Shows book detail form */
-router.get("/books/:id", asyncHandler(async (req, res) => {
-
+router.get("/:id", asyncHandler(async (req, res) => {
+  const book = await Book.findByPk(req.params.id);
+  res.render('update-book', { book, title: "Update Book" });
 	
 }));
 
