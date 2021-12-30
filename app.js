@@ -8,7 +8,6 @@ const sequelize = require('./models').sequelize;
 const pug = require('pug');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/books');
 const { Console } = require('console');
 
@@ -42,10 +41,11 @@ app.use('/books', booksRouter); //Use book.js routes
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const error = new Error("The page you are looking for does not exist.");
+  const error = new Error();
   error.status = 404;
+  error.message = "The page you are looking for does not exist.";
+  console.log("This page does not exist");
   res.status(404).render("page-not-found", {error});
-  next(error);
 });
 
 // error handler
