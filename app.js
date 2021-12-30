@@ -10,6 +10,7 @@ const pug = require('pug');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/books');
+const { Console } = require('console');
 
 var app = express();
 
@@ -18,8 +19,6 @@ app.use('/static', express.static('public'));
 
 // view engine setup
 app.set('view engine', 'pug');
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,9 +26,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-//app.use('/users', usersRouter);
-app.use('/books', booksRouter);
+app.use('/', indexRouter);      //Use index.js routes
+app.use('/books', booksRouter); //Use book.js routes
 
 
 (async() => {
@@ -47,11 +45,13 @@ app.use((req, res, next) => {
   const error = new Error("The page you are looking for does not exist.");
   error.status = 404;
   res.status(404).render("page-not-found", {error});
+  next(error);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
   if(err.status === 404) {
+    console.log("There has been a 404 error");
     res.render("page-not-found", {err});
   } else {
     err.message = err.message || "Something is wrong with the server.";
