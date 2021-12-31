@@ -15,7 +15,7 @@ function asyncHandler(cb){
 
 /* Show full list of books */
 router.get("/", asyncHandler(async (req, res) => {
-  const books = await Book.findAll();
+  const books = await Book.findAll({order: [['title', 'ASC']]});
   res.render("index", {books, title: "Books"} );
 }));
 
